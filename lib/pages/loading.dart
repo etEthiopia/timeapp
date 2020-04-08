@@ -66,7 +66,7 @@ class _LoadingState extends State<Loading> {
 
   void setupWorldTime() async {
     WorldTime instance = WorldTime(
-        location: 'Berlin', flag: 'germany.png', url: 'Europe/Berlin');
+        location: 'Addis Ababa', flag: 'et.jpg', url: 'Africa/Nairobi');
 
     await instance.getTime();
     instance.time != "Couldn't get Data"

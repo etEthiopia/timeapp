@@ -40,7 +40,19 @@ class _ChooseLocationState extends State<ChooseLocation> {
         elevation: 0.0,
         centerTitle: true,
       ),
-      body: Text("Choose_location Screen"),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              onTap: () {},
+              title: Text(timezones[index].location),
+              leading: CircleAvatar(
+                  backgroundImage: AssetImage('${timezones[index].flag}')),
+            ),
+          );
+        },
+        itemCount: timezones.length,
+      ),
     );
   }
 }
