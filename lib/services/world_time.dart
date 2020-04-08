@@ -8,6 +8,7 @@ class WorldTime {
   String time; // The time in that location
   String flag; // url to an asset flag icon
   String url; // Location url
+  bool isDay; // true if the time is daytime;
 
   WorldTime({this.location, this.flag, this.url});
 
@@ -28,6 +29,7 @@ class WorldTime {
 
       // set time property
       time = DateFormat.jm().format(now);
+      isDay = now.hour < 6 || now.hour > 16 ? false : true;
     } catch (err) {
       print("Error: $err");
       time = "Couldn't get Data";
