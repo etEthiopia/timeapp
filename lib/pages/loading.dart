@@ -18,12 +18,23 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getTime();
   }
 
-  void getData() async {
-    Response res = await get('https://jsonplaceholder.typicode.com/todos/1');
+  void getTime() async {
+    // Make Request
+    Response res =
+        await get('http://worldtimeapi.org/api/timezone/Africa/Nairobi');
     Map data = jsonDecode(res.body);
-    print(data["title"]);
+
+    // get Properties
+    String datetime = data['datetime'];
+    String offset = data['utc_offset'];
+    print("Datetime: $datetime");
+    print("Offset: $offset");
+
+    DateTime now = DateTime.parse(datetime);
+    now = now.add(Duration(hours: int.parse(offset.substring(1, 3))));
+    print("Now: $now");
   }
 }
