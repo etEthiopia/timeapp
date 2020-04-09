@@ -35,7 +35,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.black87,
         title: Text("Choose a Location"),
         elevation: 0.0,
         centerTitle: true,
@@ -46,7 +46,27 @@ class _ChooseLocationState extends State<ChooseLocation> {
               padding: EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
               child: Card(
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () async {
+                    WorldTime ins = timezones[index];
+                    if (Navigator.canPop(context)) {
+                      await ins.getTime();
+                      Navigator.pop(context, {
+                        "location": ins.location,
+                        "flag": ins.flag,
+                        "time": ins.time,
+                        "isDay": ins.isDay
+                      });
+                    } else {
+                      await ins.getTime();
+                      Navigator.pushReplacementNamed(context, '/home',
+                          arguments: {
+                            "location": timezones[index].location,
+                            "flag": timezones[index].flag,
+                            "time": ins.time,
+                            "isDay": ins.isDay
+                          });
+                    }
+                  },
                   title: Text(timezones[index].location),
                   leading: CircleAvatar(
                       backgroundImage: AssetImage('${timezones[index].flag}')),

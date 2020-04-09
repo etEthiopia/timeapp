@@ -10,7 +10,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     String bgimage = data["isDay"] ? 'day.jpg' : 'night.jpg';
 
     return Scaffold(
@@ -24,21 +24,32 @@ class _HomeState extends State<Home> {
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 125.0),
                     child: FlatButton.icon(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/location');
+                        onPressed: () async {
+                          dynamic result =
+                              await Navigator.pushNamed(context, '/location');
+                          if (result != null) {
+                            setState(() {
+                              data = {
+                                "location": result["location"],
+                                "flag": result["flag"],
+                                "time": result["time"],
+                                "isDay": result["isDay"]
+                              };
+                            });
+                          }
                         },
-                        icon: Icon(Icons.edit_location, color: Colors.white70),
+                        icon: Icon(Icons.edit_location, color: Colors.white),
                         label: Text(
                           "Choose Location",
                           style: TextStyle(
-                            color: Colors.white70,
+                            color: Colors.white,
                           ),
                         )))),
             Center(
               child: Text(data["time"],
                   style: TextStyle(
                       fontSize: 60.0,
-                      color: Colors.white70,
+                      color: Colors.white,
                       fontWeight: FontWeight.w300)),
             ),
             SizedBox(height: 15.0),
@@ -46,7 +57,7 @@ class _HomeState extends State<Home> {
               child: Text(data["location"],
                   style: TextStyle(
                       fontSize: 35.0,
-                      color: Colors.white70,
+                      color: Colors.white,
                       fontWeight: FontWeight.w200)),
             )
           ],

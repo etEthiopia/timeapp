@@ -12,9 +12,21 @@ class _LoadingState extends State<Loading> {
   String time = "Loading";
   String message = "Network Error";
   bool tryagain = false;
+  WorldTime instance =
+      WorldTime(location: 'Addis Ababa', flag: 'et.jpg', url: 'Africa/Nairobi');
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
+    try {
+      data = ModalRoute.of(context).settings.arguments;
+      if (data != {}) {
+        setLocation();
+      }
+    } catch (err) {
+      print("Build in loading.dart Error: $err");
+    }
+
     return Scaffold(
         body: Center(
             child: Column(
@@ -49,34 +61,46 @@ class _LoadingState extends State<Loading> {
                   fontSize: 20.0),
             ),
             visible: tryagain,
-          )
+          ),
         ])));
   }
 
   void secondchance() {
-    setState(() {
-      tryagain = true;
-    });
+    try {
+      setState(() {
+        tryagain = true;
+      });
+    } catch (err) {
+      print("SecondChance in loading.dart Error: $err");
+    }
   }
 
   void useSecondChance() async {
-    await Future.delayed(Duration(seconds: 1));
+    setupWorldTime();
+  }
+
+  void setLocation() {
+    instance.location = data["location"];
+    instance.flag = data["flag"];
+    instance.url = data["url"];
     setupWorldTime();
   }
 
   void setupWorldTime() async {
-    WorldTime instance = WorldTime(
-        location: 'Addis Ababa', flag: 'et.jpg', url: 'Africa/Nairobi');
-
     await instance.getTime();
-    instance.time != "Couldn't get Data"
-        ? Navigator.pushReplacementNamed(context, '/home', arguments: {
-            "location": instance.location,
-            "flag": instance.flag,
-            "time": instance.time,
-            "isDay": instance.isDay
-          })
-        : secondchance();
+
+    try {
+      instance.time != "Couldn't get Data"
+          ? Navigator.pushReplacementNamed(context, '/home', arguments: {
+              "location": instance.location,
+              "flag": instance.flag,
+              "time": instance.time,
+              "isDay": instance.isDay
+            })
+          : secondchance();
+    } catch (err) {
+      print("Go to Home in loading.dart Error: $err");
+    }
   }
 
   @override
