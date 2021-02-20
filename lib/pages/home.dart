@@ -11,7 +11,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
-    String bgimage = data["isDay"] ? 'day.jpg' : 'night.jpg';
+    String bgimage = data["isDay"] != null
+        ? data["isDay"]
+            ? 'day.jpg'
+            : 'night.jpg'
+        : 'error.jpg';
 
     return Scaffold(
       body: Container(
@@ -22,7 +26,7 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             Center(
                 child: Padding(
-                    padding: EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 125.0),
+                    padding: EdgeInsets.fromLTRB(0.0, 50.0, 0.0, 100.0),
                     child: FlatButton.icon(
                         onPressed: () async {
                           dynamic result =
@@ -47,6 +51,7 @@ class _HomeState extends State<Home> {
                         )))),
             Center(
               child: Text(data["time"],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 60.0,
                       color: Colors.white,

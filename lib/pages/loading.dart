@@ -13,7 +13,7 @@ class _LoadingState extends State<Loading> {
   String message = "Network Error";
   bool tryagain = false;
   WorldTime instance =
-      WorldTime(location: 'Addis Ababa', flag: 'et.jpg', url: 'Africa/Nairobi');
+      WorldTime(location: 'Beijing', flag: 'ch.jpg', url: 'Asia/Hong_Kong');
   Map data = {};
 
   @override

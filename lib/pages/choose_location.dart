@@ -9,25 +9,36 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
   List<WorldTime> timezones = [
     WorldTime(
-        location: 'Addis Ababa', flag: 'assets/et.jpg', url: 'Africa/Nairobi'),
-    WorldTime(
         location: 'Beijing', flag: 'assets/ch.jpg', url: 'Asia/Hong_Kong'),
-    WorldTime(location: 'Paris', flag: 'assets/fr.png', url: 'Europe/Paris'),
     WorldTime(
-        location: 'Los Angeles',
-        flag: 'assets/us.png',
-        url: 'America/Los_Angeles'),
-    WorldTime(location: 'Moscow', flag: 'assets/ru.png', url: 'Europe/Moscow'),
+        location: 'Addis Ababa', flag: 'assets/et.jpg', url: 'Africa/Nairobi'),
+    WorldTime(location: 'Berlin', flag: 'assets/ge.png', url: 'Europe/Berlin'),
+    WorldTime(
+        location: 'Chicago', flag: 'assets/us.png', url: 'America/Chicago'),
+    WorldTime(
+        location: 'Istanbul', flag: 'assets/tr.jpg', url: 'Europe/Istanbul'),
     WorldTime(
         location: 'Johannesburg',
         flag: 'assets/sa.png',
         url: 'Africa/Johannesburg'),
+    WorldTime(location: 'Lisbon', flag: 'assets/pr.jpg', url: 'Europe/Lisbon'),
     WorldTime(location: 'London', flag: 'assets/uk.png', url: 'Europe/London'),
     WorldTime(
-        location: 'New York', flag: 'assets/us.png', url: 'America/New_York'),
-    WorldTime(location: 'Berlin', flag: 'assets/ge.png', url: 'Europe/Berlin'),
+        location: 'Los Angeles',
+        flag: 'assets/us.png',
+        url: 'America/Los_Angeles'),
+    WorldTime(location: 'Madrid', flag: 'assets/sp.jpg', url: 'Europe/Madrid'),
+    WorldTime(location: 'Moscow', flag: 'assets/ru.png', url: 'Europe/Moscow'),
     WorldTime(
-        location: 'Chicago', flag: 'assets/us.png', url: 'America/Chicago'),
+        location: 'New York', flag: 'assets/us.png', url: 'America/New_York'),
+    WorldTime(location: 'Paris', flag: 'assets/fr.png', url: 'Europe/Paris'),
+    WorldTime(location: 'Rome', flag: 'assets/it.jpg', url: 'Europe/Rome'),
+    WorldTime(
+        location: 'Sao Paulo', flag: 'assets/br.jpg', url: 'America/Sao_Paulo'),
+    WorldTime(location: 'Seoul', flag: 'assets/sk.jpg', url: 'Asia/Seoul'),
+    WorldTime(
+        location: 'Sydney', flag: 'assets/au.jpg', url: 'Australia/Sydney'),
+    WorldTime(location: 'Tokyo', flag: 'assets/jp.jpg', url: 'Asia/Tokyo'),
   ];
 
   @override
